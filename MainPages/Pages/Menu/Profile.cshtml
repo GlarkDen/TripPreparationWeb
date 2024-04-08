@@ -1,0 +1,81 @@
+﻿@page "{id}"
+@model MainPages.Pages.Menu.ProfileModel
+
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<span style="font-size: 30px; padding-right: 5px;"><b>Профиль</b></span>
+<a asp-page="/Menu/EditProfile" asp-route-id="@Model.User.UserNumber" style="position:relative; top: -3px;"><img src="/img/Change.png" alt="Изменить"></a>
+
+<hr />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<dl class="row" style="font-size: 20px;">
+    <dt class="col-md-2">
+        Имя
+    </dt>
+    <dd class="col-md-10">
+        @Model.User.Name
+    </dd>
+    <dt class="col-md-2">
+        Фамилия
+    </dt>
+    <dd class="col-md-10">
+        @Model.User.Surname
+    </dd>
+    <dt class="col-md-2">
+        Отчество
+    </dt>
+    <dd class="col-md-10">
+        @Model.User.Patronymic
+    </dd>
+    <dt class="col-md-2">
+        Аллергии
+    </dt>
+    <dd class="col-md-10">
+        <textarea readonly cols="45">@Model.User.Allergies</textarea>
+    </dd>
+    <dt class="col-md-2">
+        Хронические заболевания
+    </dt>
+    <dd class="col-md-10">
+        <textarea readonly cols="45">@Model.User.СhronicDiseases</textarea>
+    </dd>
+    <dt class="col-md-2">
+        Принимаемые препараты
+    </dt>
+    <dd class="col-md-10">
+        <textarea readonly cols="45">@Model.User.MedicationsTaken</textarea>
+    </dd>
+    <dt class="col-md-2">
+        Номер телефона
+    </dt>
+    <dd class="col-md-10">
+        @DataChecker.BeautyPhone(Model.User.PhoneNumber);
+    </dd>
+    <dt class="col-md-2">
+        Почта
+    </dt>
+    <dd class="col-md-10">
+        @Model.User.EmailAddress
+    </dd>
+</dl>
+
+<a class="btn btn-secondary" style="font-size: 17px;" asp-page="/Menu/ChangePassword" asp-route-id="@Model.User.UserNumber">Сменить пароль</a><br />
+@if (Model.CanDeleteProfile)
+{
+	<a class="btn btn-danger my-2" style="font-size: 17px;" asp-page="/Menu/DeleteProfile" asp-route-id="@Model.User.UserNumber">Удалить аккаунт</a>
+}
+else
+{
+    <div data-bs-toggle="tooltip" data-bs-placement="left" title="Вы являетесь руководителем одного или нескольких предстоящих походов">
+        <a class="btn btn-danger my-2 disabled" style="font-size: 17px;" asp-page="/Menu/DeleteProfile" asp-route-id="@Model.User.UserNumber">Удалить аккаунт</a>
+    </div>
+}

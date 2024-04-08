@@ -1,0 +1,39 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.DescriptionModel
+
+@{
+    ViewData["Title"] = "Описание";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-3 col-lg-2 col-6">
+            <partial name="_DisplayTripPartial" />
+        </div>
+        <div class="col-md-9 col-lg-10 col-6">
+            <div style="margin-top: 9px;"></div>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+@*			<h3 style="margin-top: 9px;">@ViewData["Title"]</h3>
+			<hr />*@
+            <span style="font-size: 26px; padding-right: 5px;"><b>@Model.TripsList.TripTypeNumberNavigation.Type, @Model.TripsList.Place</b></span>
+            @if (Model.UserPostList.FirstOrDefault(p => p.Name == "Руководитель") != default)
+            {
+                <a asp-page="/Trip/Edit" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" style="position:relative; top: -3px;"><img src="/img/Change.png" alt="Изменить"></a>
+            }
+            <br />
+            <span style="font-size: 20px;"><em>@Model.TripsList.Region</em></span>
+            <br />
+            <div style="margin-top: 10px;"></div>
+            <span style="font-size: 24px;">C @Model.TripsList.StartDate.ToString().Replace('/', '.') по @Model.TripsList.EndDate.ToString().Replace('/', '.')</span>
+            <div style="margin-top: 30px;"></div>
+            <span style="font-size: 24px;">Описание:</span>
+            <br />
+            <span style="font-size: 22px;"><em>@Model.TripsList.Description</em></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@media print {
+	html, body {
+		height: 297mm;
+		width: 210mm;
+		font-size: 14px;
+	}
+
+    *, *:before, *:after {
+        color: #000;
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+	h1 {
+		font-size: 24px;
+	}
+	h2 {
+		font-size: 20px;
+	}
+	h3 {
+		font-size: 18px;
+	}
+
+	.header, .footer, .banner {
+		display: none;
+	}
+
+	.wrapper {
+		width: auto;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul, ol, table {
+		page-break-inside: avoid;
+	}
+
+	article {
+		page-break-inside: auto;
+	}
+
+	a[href^="http"]:after {
+		content: " (" attr(href) ")";
+	}
+}
+
+@page {
+    margin: 20mm 10mm 20mm 20mm;
+}	*, *:before, *:after { 
+		color: #000;
+		box-shadow: none;
+		text-shadow: none;
+	}

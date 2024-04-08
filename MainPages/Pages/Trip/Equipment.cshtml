@@ -1,0 +1,74 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.EquipmentModel
+
+@{
+    ViewData["Title"] = "Снаряжение";
+}
+
+
+<div>
+	<div class="row">
+		<div class="col-md-3 col-lg-2 col-6">
+			<partial name="_DisplayTripPartial" />
+		</div>
+		<div class="col-md-9 col-lg-10 col-6">
+			<div style="margin-top: 9px;"></div>
+			@if (TempData["Message"] != null)
+			{
+				<div class="alert alert-success" role="alert">
+					@TempData["Message"]
+				</div>
+			}
+            <h3>Снаряжение</h3>
+            <table class="table" style="font-size: 17px;">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Количество
+                        </th>
+                        <th>
+                            Владелец
+                        </th>
+                        <th>
+                            Вес (кг)
+                        </th>
+                        <th>
+                            Примечание
+                        </th>
+                        <th>
+                            Распределение
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.EquipmentList)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.Amount
+                            </td>
+                            <td>
+                                @item.Owner
+                            </td>
+                            <td>
+                                @item.Weight
+                            </td>
+                            <td>
+                                @item.Note
+                            </td>
+                            <td>
+                                @Model.EquipmentDist[item.EquipmentNumber]
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+		</div>
+	</div>
+</div>

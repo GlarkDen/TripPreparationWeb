@@ -1,0 +1,58 @@
+﻿@page
+@model MainPages.Pages.Login.RegistrationModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="row justify-content-center" style="font-size: 17px; padding-top: 8%; padding-bottom: 8%;">
+	<div class="col-md-4 col-sm-3"></div>
+	<div class="col-md-4 col-sm-6">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group my-2">
+				<label asp-for="User.Name" class="control-label">Имя:</label>
+				<input asp-for="User.Name" type="text" class="form-control" />
+				<span asp-validation-for="User.Name" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="User.Surname" class="control-label">Фамилия:</label>
+				<input asp-for="User.Surname" type="text" class="form-control" />
+				<span asp-validation-for="User.Surname" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="User.Patronymic" class="control-label">Отчество:</label>
+				<input asp-for="User.Patronymic" type="text" class="form-control" />
+				<span asp-validation-for="User.Patronymic" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="User.PhoneNumber" class="control-label">Телефон:</label>
+				<input asp-for="User.PhoneNumber" type="text" class="form-control" />
+				<span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="User.EmailAddress" class="control-label">Почта:</label>
+				<input asp-for="User.EmailAddress" type="text" class="form-control" />
+				<span asp-validation-for="User.EmailAddress" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="User.Password" class="control-label">Пароль:</label>
+				<input asp-for="User.Password" type="password" class="form-control"/>
+				<span asp-validation-for="User.Password" class="text-danger"></span>
+			</div>
+			<div class="form-group my-2">
+				<label asp-for="RepeatPassword" class="control-label">Повторите пароль:</label>
+				<input asp-for="RepeatPassword" type="password" class="form-control" />
+				<span asp-validation-for="RepeatPassword" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<input type="submit" value="Регистрация" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+	<div class="col-md-4 col-sm-3"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

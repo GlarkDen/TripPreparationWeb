@@ -1,0 +1,121 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.ProductsModel
+
+@{
+    ViewData["Title"] = "Продукты";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-3 col-lg-2 col-6">
+            <partial name="_DisplayTripPartial" />
+        </div>
+        <div class="col-md-9 col-lg-10 col-6">
+            <div style="margin-top: 9px;"></div>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+            <h3>Продукты</h3>
+            <table class="table" style="font-size: 17px;">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Вес (г)
+                        </th>
+                        <th>
+                            Ккал
+                        </th>
+                        <th>
+                            Белки
+                        </th>
+                        <th>
+                            Жиры
+                        </th>
+                        <th>
+                            Углеводы
+                        </th>
+						<th>
+                            Количество
+                        </th>
+                        <th>
+                            Примечание
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProductsList)
+                    {
+                        <tr>
+                            <td>
+                                @item.ProductNumberNavigation.ProductName
+                            </td>
+                            <td>
+                                @item.ProductNumberNavigation.Weight
+                            </td>
+                            <td>
+                                @item.ProductNumberNavigation.Kcal
+                            </td>
+                            <td>
+                                @item.ProductNumberNavigation.Proteins
+                            </td>
+                            <td>
+                                @item.ProductNumberNavigation.Fats
+                            </td>
+                            <td>
+                                @item.ProductNumberNavigation.Carbohydrates
+                            </td>
+                            <td>
+                                @item.Amount
+                            </td>
+                            <td>
+                                @item.Note
+                            </td>
+                        </tr>
+                    }
+                    <tr style="color:brown; font-weight: 500;">
+                        <td>
+                            Сумма:
+                        </td>
+                        <td>
+                            @Model.ProductsList.Select(p => p.ProductNumberNavigation.Weight).Sum()
+                        </td>
+                        <td>
+                            @Model.ProductsList.Select(p => p.ProductNumberNavigation.Kcal).Sum()
+                        </td>
+                        <td>
+                            @Model.ProductsList.Select(p => p.ProductNumberNavigation.Proteins).Sum()
+                        </td>
+                        <td>
+                            @Model.ProductsList.Select(p => p.ProductNumberNavigation.Fats).Sum()
+                        </td>
+                        <td>
+                            @Model.ProductsList.Select(p => p.ProductNumberNavigation.Carbohydrates).Sum()
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+@*            <a href="#" class="action-print">Печать</a>*@
+        </div>
+    </div>
+</div>
+
+@*<script>
+    $(function ($) {
+        $(".action-print").click(function () {
+            window.print();
+            return false;
+        });
+    });
+</script>*@

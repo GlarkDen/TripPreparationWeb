@@ -1,0 +1,55 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.AddParticipantModel
+
+@{
+	ViewData["Title"] = "Добавление участника";
+}
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h3>Добавление участника</h3>
+		<form method="get">
+			<div style="font-size: 20px; padding-top: 8px; margin-bottom: 7px;">
+				@*			<span style="margin-right: 5px;">Введите ФИО пользователя:</span><br />*@
+				<input type="text" asp-for="SearchUser" style="width: 330px;" placeholder="Иван Иванович..." />
+				<button style="position:relative; padding-top:5px; padding-bottom:5px; left: 5px; top: -3px; font-size: 17px;" class="btn btn-primary">Поиск</button>
+				<a style="position:relative; padding-top:5px; padding-bottom:5px; left: 9px; top: -3px; font-size: 17px;" asp-page="/Trip/Participants" asp-route-userId="@Model.User.UserNumber" asp-route-tripId="@Model.TripId" class="btn btn-secondary" style="font-size: 17px;">Отмена</a>
+			</div>
+		</form>
+		<table class="table" style="font-size: 17px;">
+			<thead>
+				<tr>
+					<th>
+						№
+					</th>
+					<th>
+						ФИО
+					</th>
+					<th>
+						Добавление
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.FindUsers)
+				{
+					<form method="post">
+					<tr>
+						<td>
+							@item.UserNumber
+							<input name="newUserId" value="@item.UserNumber" type="hidden">
+						</td>
+						<td>
+								@item.Surname @item.Name @item.Patronymic
+						</td>
+						<td>
+							<button style="position:relative; padding-top:5px; padding-bottom:5px; left: 5px; top: -3px; font-size: 17px;" class="btn btn-primary">Добавить</button>
+						</td>
+					</tr>
+					</form>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

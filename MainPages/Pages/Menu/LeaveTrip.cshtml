@@ -1,0 +1,38 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Menu.LeaveTripModel
+
+@{
+    ViewData["Title"] = "LeaveTrip";
+}
+
+<h4>Вы уверены, что хотите покинуть поход?</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Название
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Trip.TripTypeNumberNavigation.Type, @Model.Trip.Place
+        </dd>
+        <dt class="col-sm-2">
+            Даты
+        </dt>
+        <dd class="col-sm-10">
+            C @Model.Trip.StartDate.ToString().Replace('/', '.') по @Model.Trip.EndDate.ToString().Replace('/', '.')
+        </dd>
+        <dt class="col-sm-2">
+            Описание
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Trip.Description
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div style="padding-top: 7px;">
+            <a asp-page="/Menu/Trips" asp-route-id="@Model.User.UserNumber" class="btn btn-secondary" style="font-size: 17px;">Отмена</a>
+            <input style="position:relative; left: 12px; font-size: 17px;" type="submit" value="Выйти" class="btn btn-danger" />
+        </div>
+    </form>
+</div>

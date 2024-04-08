@@ -1,0 +1,96 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.FoodModel
+
+@{
+    ViewData["Title"] = "Питание";
+}
+
+
+<div>
+    <div class="row">
+        <div class="col-md-3 col-lg-2 col-6">
+            <partial name="_DisplayTripPartial" />
+        </div>
+        <div class="col-md-9 col-lg-10 col-6">
+            <div style="margin-top: 9px;"></div>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+            <h3>Питание</h3>
+            <table class="table" style="font-size: 17px;">
+                <thead>
+                    <tr>
+                        <th>
+                            Продукты
+                        </th>
+                        <th>
+                            Блюда
+                        </th>
+                        <th>
+                            Дата
+                        </th>
+                        <th>
+                            Тип
+                        </th>
+                        <th>
+                            Примечание
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Foods)
+                    {
+                        <tr>
+                            <td>
+                                <table class="table" border="1" frame="rhs" style="font-size: 17px;">
+                                    <thead>
+                                       @* <tr>
+                                            <td>
+                                                Название
+                                            </td>
+                                            <td>
+                                                Количество
+                                            </td>
+                                        </tr>*@
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < item.ProductsForFoods.Count; i++) 
+                                        {
+											<tr>
+												<td>
+													@Model.Names[item.FoodNumber][i] 
+												</td>
+
+												<td>
+                                                    @Model.Amounts[item.FoodNumber][i] шт
+												</td>
+											</tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                @foreach (var dish in item.DishesForFoods.Select(d => d.DishName).ToList())
+                                {
+                                    <span>@dish</span><br />
+                                }
+                            </td>
+                            <td>
+                                @item.Date.ToString().Replace('/', '.')
+                            </td>
+                            <td>
+                                @item.FoodIntakeTypeNumberNavigation.Name
+                            </td>
+                            <td>
+                                @item.Note
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

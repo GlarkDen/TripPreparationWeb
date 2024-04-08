@@ -1,0 +1,138 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.ParticipantsModel
+
+@{
+    ViewData["Title"] = "Участники";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-3 col-lg-2 col-6">
+            <partial name="_DisplayTripPartial" />
+        </div>
+        <div class="col-md-9 col-lg-10 col-6">
+            <div style="margin-top: 9px;"></div>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+            <h3>Участники</h3>
+			<table class="table" style="font-size: 17px;">
+				<thead>
+					<tr>
+						<th>
+							№
+						</th>
+						<th>
+							ФИО
+						</th>
+						<th>
+							Контакты
+						</th>
+						<th>
+							Должности
+						</th>
+						@if (Model.UserPostList.FirstOrDefault(p => p.Name == "Руководитель") != default)
+						{
+							<th>
+								Удаление
+							</th>
+						}
+						<th>
+							Аллергии
+						</th>
+						<th>
+							Заболевания
+						</th>
+						<th>
+							Препараты
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.ParticipantsList)
+					{
+						<tr>
+							<td>
+								@Model.Counter
+							</td>
+							<td>
+								@item.UserNumberNavigation.Surname @item.UserNumberNavigation.Name @item.UserNumberNavigation.Patronymic
+							</td>
+							<td>
+								@DataChecker.BeautyPhone(item.UserNumberNavigation.PhoneNumber)
+								<br>
+								@item.UserNumberNavigation.EmailAddress
+							</td>
+							<td>
+								@if (Model.UserPostList.FirstOrDefault(p => p.Name == "Руководитель") != default)
+								{
+									<a class="btn btn-outline-success" asp-page="/Trip/EditPosts" asp-route-tripId="@item.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-route-partId="@item.ParticipantNumber">
+										@DataChecker.ListToString(item.PostNumbers.Select(p => p.Name).ToList())
+									</a>
+								}
+								else
+								{
+									@DataChecker.ListToString(item.PostNumbers.Select(p => p.Name).ToList())
+								}
+							</td>
+							@if (Model.UserPostList.FirstOrDefault(p => p.Name == "Руководитель") != default)
+							{
+								@if (item.UserNumber != Model.User.UserNumber)
+								{
+									<td>
+										<a class="btn btn-outline-danger" asp-page="/Trip/DeleteParticipant" asp-route-tripId="@item.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-route-partId="@item.ParticipantNumber">Удалить</a>
+									</td>
+								}
+								else
+								{
+									<td class="text-center">-</td>
+								}
+							}
+							<td class="text-center">
+								@if (item.UserNumberNavigation.Allergies == null)
+								{
+									<span class="text-center">-</span>
+								}
+								else
+								{
+									@item.UserNumberNavigation.Allergies
+								}
+							</td>
+							<td class="text-center">
+								@if (item.UserNumberNavigation.СhronicDiseases == null)
+								{
+									<span class="text-center">-</span>
+								}
+								else
+								{
+									@item.UserNumberNavigation.СhronicDiseases
+								}
+							</td>
+							<td class="text-center">
+								@if (item.UserNumberNavigation.MedicationsTaken == null)
+								{
+									<span class="text-center">-</span>
+								}
+								else
+								{
+									@item.UserNumberNavigation.MedicationsTaken
+								}
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+            @if (Model.UserPostList.FirstOrDefault(p => p.Name == "Руководитель") != default)
+			{
+				<p class="text-center">
+					<a asp-page="/Trip/AddParticipant" class="btn btn-primary" asp-route-userId="@Model.User.UserNumber" asp-route-tripId="@Model.TripsList.TripNumber">Добавить участника</a>
+				</p>
+			}
+		</div>
+    </div>
+</div>

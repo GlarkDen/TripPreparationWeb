@@ -1,0 +1,42 @@
+﻿@page
+@model MainPages.Pages.Login.LoginModel
+@{
+	ViewData["Title"] = "Вход";
+}
+
+<form method="post" class="center-block" style="width: 300px; font-size: 18px; padding-bottom: 25vh; padding-top: 23vh;">
+	<div class="form-group">
+		<label>Почта:</label>
+		<input asp-for="Email" id="Email" type="text" value="dgexample@mail.ru" class="form-control">
+	</div>
+	<div class="form-group" style="padding-top: 10px;">
+		<label>Пароль:</label>
+		<input asp-for="Password" type="password" autocomplete="current-password" value="asdasdD1" class="form-control">
+	</div>
+	<div class="form-group" style="padding-top: 10px;">
+		<input type="submit" value="Войти" class="btn btn-primary" style="font-size: 17px;" />
+	</div>
+
+	@if (TempData["Error"] != null)
+	{
+		<div style="padding-top: 10px;" class="text-center">
+			<div class="alert alert-warning" id="alr">
+				@TempData["Error"]
+			</div>
+		</div>
+
+		<script>
+			function removeAlert() {
+				document.getElementById('alr').remove();
+			}
+
+			setTimeout(removeAlert, 5000);
+		</script>
+	}
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

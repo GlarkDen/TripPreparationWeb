@@ -1,0 +1,72 @@
+﻿@page "{id}"
+@model MainPages.Pages.Menu.TripsModel
+
+@{
+	ViewData["Title"] = "Мои походы";
+}
+
+<div class="row">
+	<div class="col-sm-0"></div>
+	<div class="col-sm-12">
+		<h1>Походы</h1>
+		@if (TempData["Message"] != null)
+		{
+			<div class="alert alert-success" role="alert">
+				@TempData["Message"]
+			</div>
+		}
+
+		<table class="table" style="font-size: 17px;">
+			<thead>
+				<tr>
+					<th>
+						Название
+					</th>
+					<th>
+						Даты
+					</th>
+					<th>
+						Перейти
+					</th>
+					<th>
+						Выход
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.TripsList)
+				{
+					<tr>
+						<td>
+							@item.TripTypeNumberNavigation.Type, @item.Place
+						</td>
+						<td>
+							C @item.StartDate.ToString().Replace('/', '.') по @item.EndDate.ToString().Replace('/', '.')
+						</td>
+						<td>
+							<a class="btn btn-outline-success" asp-page="/Trip/Description" asp-route-tripId="@item.TripNumber" asp-route-userId="@Model.User.UserNumber">К походу</a>
+						</td>
+						<td>
+							@if (!Model.UserGeneralPosts.Contains(item.TripNumber) || item.ParticipantsLists.Count == 1)
+							{
+								<a class="btn btn-outline-danger" asp-page="/Menu/LeaveTrip" asp-route-tripId="@item.TripNumber" asp-route-userId="@Model.User.UserNumber">Выйти</a>
+							}
+							else
+							{
+								<div data-bs-toggle="tooltip" data-bs-placement="left" title="Вы являетесь руководителем указанного похода">
+									<a class="btn btn-outline-danger disabled" asp-page="/Menu/LeaveTrip" asp-route-tripId="@item.TripNumber" asp-route-userId="@Model.User.UserNumber">Выйти</a>
+								</div>
+							}
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<p class="text-center">
+			<a asp-page="/Menu/CreateTrip" class="btn btn-primary" asp-route-id="@Model.User.UserNumber">Создать поход</a>
+		</p>
+	</div>
+	<div class="col-sm-0"></div>
+</div>

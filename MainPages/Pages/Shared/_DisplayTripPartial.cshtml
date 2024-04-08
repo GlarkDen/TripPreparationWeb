@@ -1,0 +1,111 @@
+﻿@{
+
+}
+
+@if ((string)ViewData["Title"] == "Описание")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Description">Описание</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Description">Описание</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Участники")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Participants">Участники</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Participants">Участники</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Снаряжение")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Equipment">Снаряжение</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Equipment">Снаряжение</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Продукты")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Products">Продукты</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Products">Продукты</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Питание")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Food">Питание</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Food">Питание</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Финансы")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Finance">Финансы</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Finance">Финансы</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "План")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Plan">План</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Plan">План</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Аптечка")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Medicine">Аптечка</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Medicine">Аптечка</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Маршрут")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Route">Маршрут</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Route">Маршрут</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Палатки и суда")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/TentsAndBoats">Палатки и суда</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/TentsAndBoats">Палатки и суда</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Дежурство")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Duty">Дежурство</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Duty">Дежурство</a>
+}
+<br />
+@if ((string)ViewData["Title"] == "Ремнабор")
+{
+	<a class="btn btn-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Repair">Ремнабор</a>
+}
+else
+{
+	<a class="btn btn-outline-secondary trip-button container-fluid" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" asp-page="/Trip/Repair">Ремнабор</a>
+}

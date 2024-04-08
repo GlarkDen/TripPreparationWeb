@@ -1,0 +1,63 @@
+﻿@page "{tripId}/{userId}"
+@model MainPages.Pages.Trip.EditModel
+
+@{
+    ViewData["Title"] = "Редактирование похода";
+}
+
+<div class="row justify-content-center" style="font-size: 17px; padding-top: 8%; padding-bottom: 8%;">
+    <div class="col-md-4">
+        <h4>Редактирование похода</h4>
+        <form method="post">
+            <input type="hidden" asp-for="User.UserNumber" />
+            <input type="hidden" asp-for="User.Name" />
+            <input type="hidden" asp-for="User.Surname" />
+            <input type="hidden" asp-for="User.Patronymic" />
+            <input type="hidden" asp-for="User.Allergies" />
+            <input type="hidden" asp-for="User.СhronicDiseases" />
+            <input type="hidden" asp-for="User.MedicationsTaken" />
+            <input type="hidden" asp-for="User.EmailAddress" />
+            <input type="hidden" asp-for="User.PhoneNumber" />
+            <input type="hidden" asp-for="User.Password" />
+            <input type="hidden" asp-for="TripsList.TripNumber" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.TripTypeNumber" class="control-label">Тип похода</label>
+                <select asp-for="TripsList.TripTypeNumber" class="form-control" asp-items="ViewBag.TripTypeNumber"></select>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.Place" class="control-label">Место</label>
+                <input asp-for="TripsList.Place" type="text" class="form-control" />
+                <span asp-validation-for="TripsList.Place" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.StartDate" class="control-label">Дата начала</label>
+                <input asp-for="TripsList.StartDate" type="date" id="stdate" value=@DataChecker.DbDateToWebDate(Model.TripsList.StartDate.ToString()) class="form-control" />
+                <span asp-validation-for="TripsList.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.EndDate" class="control-label">Дата окончания</label>
+                <input asp-for="TripsList.EndDate" type="date" value=@DataChecker.DbDateToWebDate(Model.TripsList.EndDate.ToString()) class="form-control" />
+                <span asp-validation-for="TripsList.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.Region" class="control-label">Регион</label>
+                <input asp-for="TripsList.Region" type="text" class="form-control" />
+                <span asp-validation-for="TripsList.Region" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="TripsList.Description" class="control-label">Описание</label>
+                <textarea asp-for="TripsList.Description" class="form-control" cols="45"></textarea>
+                <span asp-validation-for="TripsList.Description" class="text-danger"></span>
+            </div>
+            <div style="padding-top: 7px;" class="form-group">
+                <a asp-page="/Trip/Description" asp-route-tripId="@Model.TripsList.TripNumber" asp-route-userId="@Model.User.UserNumber" class="btn btn-secondary" style="font-size: 16px;">Отмена</a>
+                <input style="position:relative; left: 12px; font-size: 16px;" type="submit" value="Сохранить изменения" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

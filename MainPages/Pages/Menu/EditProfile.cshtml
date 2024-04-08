@@ -1,0 +1,72 @@
+﻿@page "{id}"
+@model MainPages.Pages.Menu.EditProfileModel
+
+@{
+	ViewData["Title"] = "Редактирование профиля";
+}
+
+<h3>Редактирование профиля</h3>
+<form method="post">
+	<!--<div asp-validation-summary="All" class="text-danger"></div>-->
+	<div class="row" style="padding-top: 10px; font-size: 18px;">
+		<div class="col-md-4">
+			<input type="hidden" asp-for="User.UserNumber" />
+			<input type="hidden" asp-for="User.Password" />
+			<div class="form-group">
+				<label asp-for="User.Name" class="control-label">Имя</label>
+				<input asp-for="User.Name" class="form-control" />
+				<span asp-validation-for="User.Name" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 7px;">
+				<label asp-for="User.Surname" class="control-label">Фамилия</label>
+				<input asp-for="User.Surname" class="form-control" />
+				<span asp-validation-for="User.Surname" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 7px;">
+				<label asp-for="User.Patronymic" class="control-label">Отчество</label>
+				<input asp-for="User.Patronymic" class="form-control" />
+				<span asp-validation-for="User.Patronymic" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 30px;">
+				<label asp-for="User.PhoneNumber" class="control-label">Телефон</label>
+				<input asp-for="User.PhoneNumber" class="form-control" />
+				<span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 7px; padding-bottom: 10px;">
+				<label asp-for="User.EmailAddress" class="control-label">Почта</label>
+				<input asp-for="User.EmailAddress" class="form-control" />
+				<span asp-validation-for="User.EmailAddress" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			<input type="hidden" asp-for="User.UserNumber" />
+			<div class="form-group">
+				<label asp-for="User.Allergies" class="control-label">Аллергии</label>
+				<textarea cols="30" asp-for="User.Allergies" class="form-control"></textarea>
+				<span asp-validation-for="User.Allergies" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 15px;">
+				<label asp-for="User.СhronicDiseases" class="control-label">Хронические заболевания</label>
+				<textarea cols="30" asp-for="User.СhronicDiseases" class="form-control"></textarea>
+				<span asp-validation-for="User.СhronicDiseases" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="padding-top: 15px;">
+				<label asp-for="User.MedicationsTaken" class="control-label">Принимаемые препараты</label>
+				<textarea cols="30" asp-for="User.MedicationsTaken" class="form-control"></textarea>
+				<span asp-validation-for="User.MedicationsTaken" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+
+	<div style="padding-top: 7px;">
+		<a asp-page="/Menu/Profile" asp-route-id="@Model.User.UserNumber" class="btn btn-secondary" style="font-size: 16px;">Назад</a>
+		<input style="position:relative; left: 12px; font-size: 16px;" type="submit" value="Сохранить изменения" class="btn btn-success" />
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

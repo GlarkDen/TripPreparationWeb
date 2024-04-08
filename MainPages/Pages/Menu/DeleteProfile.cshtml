@@ -1,0 +1,68 @@
+﻿@page
+@model MainPages.Pages.Menu.DeleteProfileModel
+
+@{
+    ViewData["Title"] = "Удаление аккаунта";
+}
+
+<h3>Вы уверены, что хотите удалить аккаунт?</h3>
+<div>
+    <hr />
+    <dl class="row" style="font-size: 20px;">
+        <dt class="col-md-2">
+            Имя
+        </dt>
+        <dd class="col-md-10">
+            @Model.User.Name
+        </dd>
+        <dt class="col-md-2">
+            Фамилия
+        </dt>
+        <dd class="col-md-10">
+            @Model.User.Surname
+        </dd>
+        <dt class="col-md-2">
+            Отчество
+        </dt>
+        <dd class="col-md-10">
+            @Model.User.Patronymic
+        </dd>
+        <dt class="col-md-2">
+            Аллергии
+        </dt>
+        <dd class="col-md-10">
+            <textarea readonly cols="45">@Model.User.Allergies</textarea>
+        </dd>
+        <dt class="col-md-2">
+            Хронические заболевания
+        </dt>
+        <dd class="col-md-10">
+            <textarea readonly cols="45">@Model.User.СhronicDiseases</textarea>
+        </dd>
+        <dt class="col-md-2">
+            Принимаемые препараты
+        </dt>
+        <dd class="col-md-10">
+            <textarea readonly cols="45">@Model.User.MedicationsTaken</textarea>
+        </dd>
+        <dt class="col-md-2">
+            Номер телефона
+        </dt>
+        <dd class="col-md-10">
+            @DataChecker.BeautyPhone(Model.User.PhoneNumber);
+        </dd>
+        <dt class="col-md-2">
+            Почта
+        </dt>
+        <dd class="col-md-10">
+            @Model.User.EmailAddress
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <div style="padding-top: 7px;">
+            <a asp-page="/Menu/Profile" asp-route-id="@Model.User.UserNumber" class="btn btn-secondary" style="font-size: 17px;">Отмена</a>
+            <input style="position:relative; left: 12px; font-size: 17px;" type="submit" value="Удалить аккаунт" class="btn btn-danger" />
+        </div>
+    </form>
+</div>
