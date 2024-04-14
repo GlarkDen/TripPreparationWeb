@@ -8,5 +8,5 @@
 ![image](https://github.com/GlarkDen/TripPreparationWeb/assets/90215968/23de92e2-6839-4976-8e25-8f4b9810304b)
 ![image](https://github.com/GlarkDen/TripPreparationWeb/assets/90215968/5bf7f079-5f20-4794-bba7-ea43106ce335)
 ---
-## База данных (около 30 таблиц)
+## База данных (30 таблиц)
 ![Relational DB schema project](https://github.com/GlarkDen/TripPreparationWeb/assets/90215968/938ff149-b9ee-41a7-acb6-a7b24a75e136)
